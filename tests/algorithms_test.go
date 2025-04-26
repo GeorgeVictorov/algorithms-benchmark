@@ -41,3 +41,16 @@ func TestBubbleSortFlag(t *testing.T) {
 		}
 	}
 }
+
+func TestSelectionSort(t *testing.T) {
+	for _, c := range testCases {
+        inputCopy := make([]int, len(c.input))
+        copy(inputCopy, c.input)
+
+		result := algorithm.SelectionSort(inputCopy)
+		if !reflect.DeepEqual(result, c.expected) {
+			t.Errorf("BubbleSort(%v) == %v, expected %v", c.input, result, c.expected)
+		}
+	}
+}
+
