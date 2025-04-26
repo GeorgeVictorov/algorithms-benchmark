@@ -9,6 +9,13 @@ A project to test the performance of various sorting algorithms.
 - `tests/`
 - `main.go`
 
+## Installation
+
+```bash
+git clone https://github.com/GeorgeVictorov/algorithms-benchmark.git
+cd algorithms-benchmark
+```
+
 ## Run
 
 ```bash
@@ -32,3 +39,8 @@ BubbleSortFlag       10000      88.49015ms
 ```bash
 go test ./tests
 ```
+
+## Implemented Algorithms
+
+1. BubbleSort – Classic Bubble Sort algorithm.
+2. BubbleSortFlag – Optimized version of Bubble Sort that uses a flag to reduce unnecessary iterations.
