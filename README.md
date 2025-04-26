@@ -55,5 +55,6 @@ go test ./tests
 
 ## Implemented Algorithms
 
-1. BubbleSort – Classic Bubble Sort algorithm.
-2. BubbleSortFlag – Optimized version of Bubble Sort that uses a flag to reduce unnecessary iterations.
+1. **BubbleSort** – Classic Bubble Sort algorithm.
+2. **BubbleSortFlag** – Optimized version of Bubble Sort that uses a flag to reduce unnecessary iterations.
+3. **SelectionSort** – Finds the smallest element in the unsorted part and swaps it with the first unsorted element.
