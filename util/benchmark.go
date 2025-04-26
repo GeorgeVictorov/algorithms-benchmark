@@ -52,12 +52,11 @@ func BenchmarkSorts(sorts []SortAlgorithm, sizes []int, repeats int) {
 			return results[i].AvgTime < results[j].AvgTime
 		})
 
-        for _, res := range results {
-            fmt.Printf("%-20s %-15v\n", res.Name, res.AvgTime)
+		for _, res := range results {
+			fmt.Printf("%-20s %-15v\n", res.Name, res.AvgTime)
 		}
 	}
 
 	benchmarkDuration := time.Since(benchmarkStart)
 	fmt.Printf("\nBenchmark completed in: %v\n", benchmarkDuration)
 }
-

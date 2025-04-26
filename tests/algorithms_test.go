@@ -7,21 +7,20 @@ import (
 )
 
 var testCases = []struct {
-    input    []int
-    expected []int
+	input    []int
+	expected []int
 }{
-    {input: []int{3, 2, 1}, expected: []int{1, 2, 3}},
-    {input: []int{1, 2, 3}, expected: []int{1, 2, 3}},
-    {input: []int{5, -1, 3}, expected: []int{-1, 3, 5}},
-    {input: []int{}, expected: []int{}},
-    {input: []int{0, 0, 0}, expected: []int{0, 0, 0}},
+	{input: []int{3, 2, 1}, expected: []int{1, 2, 3}},
+	{input: []int{1, 2, 3}, expected: []int{1, 2, 3}},
+	{input: []int{5, -1, 3}, expected: []int{-1, 3, 5}},
+	{input: []int{}, expected: []int{}},
+	{input: []int{0, 0, 0}, expected: []int{0, 0, 0}},
 }
-
 
 func TestBubbleSort(t *testing.T) {
 	for _, c := range testCases {
-        inputCopy := make([]int, len(c.input))
-        copy(inputCopy, c.input)
+		inputCopy := make([]int, len(c.input))
+		copy(inputCopy, c.input)
 
 		result := algorithm.BubbleSort(inputCopy)
 		if !reflect.DeepEqual(result, c.expected) {
@@ -32,8 +31,8 @@ func TestBubbleSort(t *testing.T) {
 
 func TestBubbleSortFlag(t *testing.T) {
 	for _, c := range testCases {
-        inputCopy := make([]int, len(c.input))
-        copy(inputCopy, c.input)
+		inputCopy := make([]int, len(c.input))
+		copy(inputCopy, c.input)
 
 		result := algorithm.BubbleSortFlag(inputCopy)
 		if !reflect.DeepEqual(result, c.expected) {
@@ -44,8 +43,8 @@ func TestBubbleSortFlag(t *testing.T) {
 
 func TestSelectionSort(t *testing.T) {
 	for _, c := range testCases {
-        inputCopy := make([]int, len(c.input))
-        copy(inputCopy, c.input)
+		inputCopy := make([]int, len(c.input))
+		copy(inputCopy, c.input)
 
 		result := algorithm.SelectionSort(inputCopy)
 		if !reflect.DeepEqual(result, c.expected) {
@@ -53,4 +52,3 @@ func TestSelectionSort(t *testing.T) {
 		}
 	}
 }
-
