@@ -6,10 +6,10 @@ import (
     "github.com/GeorgeVictorov/algorithms-benchmark/util"
 )
 
-type SortAlgorithm struct (
+type SortAlgorithm struct {
     Name string
     Func func([]int) [] int
-)
+}
 
 func BechmarkSorts(sorts []SortAlgorithm, sizes []int) {
     fmt.Printf("%-20s %-10s %-10s\n", "Algorithm", "Size", "Time")
