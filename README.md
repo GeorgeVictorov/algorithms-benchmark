@@ -22,16 +22,33 @@ cd algorithms-benchmark
 go run main.go
 ```
 
-## Output
+## Output (colors in terminal)
+
+- 🟩 Green: Fastest algorithm
+- 🟨 Yellow: Other algorithms
+- 🟥 Red: Slowest algorithm
 
 ```
-Algorithm            Size       Avg Time
-BubbleSort           100        14.79µs
-BubbleSortFlag       100        6.964µs
-BubbleSort           1000       865.805µs
-BubbleSortFlag       1000       646.54µs
-BubbleSort           10000      107.027192ms
-BubbleSortFlag       10000      88.49015ms
+
+=== Size: 100 (repeats: 10) ===
+Algorithm            Avg Time
+SelectionSort        5.856µs
+BubbleSortFlag       6.448µs
+BubbleSort           10.225µ
+
+=== Size: 1000 (repeats: 10) ===
+Algorithm            Avg Time
+SelectionSort        435.489µs
+BubbleSortFlag       727.172µs
+BubbleSort           900.598µs
+
+=== Size: 10000 (repeats: 10) ===
+Algorithm            Avg Time
+SelectionSort        39.262782ms
+BubbleSortFlag       84.817661ms
+BubbleSort           111.625699ms
+
+
 ```
 
 ## Tests
