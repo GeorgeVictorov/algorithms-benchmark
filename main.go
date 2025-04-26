@@ -1,10 +1,17 @@
 package main
 
 import (
-    "fmt"
+    "github.com/GeorgeVictorov/algorithms-benchmark/algorithm"
     "github.com/GeorgeVictorov/algorithms-benchmark/util"
 )
 
 func main() {
-    fmt.Println(util.RandomArray(10, 100))
+    sorts := []util.SortAlgorithm{
+		{Name: "BubbleSort", Func: algorithm.BubbleSort},
+		{Name: "BubbleSortFlag", Func: algorithm.BubbleSortFlag},
+    }
+
+    arrSizes := []int{100, 1000, 10000}
+
+    util.BenchmarkSorts(sorts, arrSizes)
 }
