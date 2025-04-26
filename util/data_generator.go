@@ -1,4 +1,4 @@
-package utils
+package util
 
 import (
     "math/rand"
@@ -8,7 +8,7 @@ import (
 func RandomArray(size, maxn int) []int {
     if size <= 0 {
         return []int{}
-    }    
+    }
 
     rand.Seed(time.Now().UnixNano())
 
