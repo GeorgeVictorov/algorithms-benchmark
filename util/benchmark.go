@@ -6,13 +6,6 @@ import (
 	"time"
 )
 
-const (
-	ColorReset  = "\033[0m"
-	ColorRed    = "\033[31m"
-	ColorGreen  = "\033[32m"
-    ColorYellow = "\033[33m"
-)
-
 type SortAlgorithm struct {
 	Name string
 	Func func([]int) []int
@@ -59,17 +52,8 @@ func BenchmarkSorts(sorts []SortAlgorithm, sizes []int, repeats int) {
 			return results[i].AvgTime < results[j].AvgTime
 		})
 
-        for i, res := range results {
-			color := ColorYellow
-
-			if i == 0 {
-				color = ColorGreen
-			} else if i == len(results)-1 {
-				color = ColorRed
-			}
-
-			fmt.Printf("%s%-20s %-15v%s\n", color, res.Name, res.AvgTime, ColorReset)
-
+        for _, res := range results {
+            fmt.Printf("%-20s %-15v\n", res.Name, res.AvgTime)
 		}
 	}
 
