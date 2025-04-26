@@ -10,21 +10,29 @@ type SortAlgorithm struct {
 	Func func([]int) []int
 }
 
-func BenchmarkSorts(sorts []SortAlgorithm, sizes []int) {
-	fmt.Printf("%-20s %-10s %-10s\n", "Algorithm", "Size", "Time")
+func BenchmarkSorts(sorts []SortAlgorithm, sizes []int, repeats int) {
+    fmt.Printf("%-20s %-10s %-15s\n", "Algorithm", "Size", "Avg Time")
 
-	for _, size := range sizes {
-		arr := RandomArray(size, 10000)
+    for _, size := range sizes {
+        arr := RandomArray(size, 10000)
 
-		for _, sort := range sorts {
-			copiedArr := make([]int, len(arr))
-			copy(copiedArr, arr)
+        for _, sort := range sorts {
+            var totalTime time.Duration
 
-			start := time.Now()
-			sort.Func(copiedArr)
-			end := time.Since(start)
+            for i := 0; i < repeats; i++ {
+                copiedArr := make([]int, len(arr))
+                copy(copiedArr, arr)
 
-			fmt.Printf("%-20s %-10d %-10v\n", sort.Name, size, end)
-		}
-	}
+                start := time.Now()
+                sort.Func(copiedArr)
+                elapsed := time.Since(start)
+
+                totalTime += elapsed
+            }
+
+            avgTime := totalTime / time.Duration(repeats)
+
+            fmt.Printf("%-20s %-10d %-15v\n", sort.Name, size, avgTime)
+        }
+    }
 }
