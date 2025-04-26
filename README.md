@@ -22,11 +22,7 @@ cd algorithms-benchmark
 go run main.go
 ```
 
-## Output (colors in terminal)
-
-- 🟩 Green: Fastest algorithm
-- 🟨 Yellow: Other algorithms
-- 🟥 Red: Slowest algorithm
+## Output
 
 ```
 
