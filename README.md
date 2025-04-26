@@ -15,6 +15,8 @@ A project to test the performance of various sorting algorithms.
 go run main.go
 ```
 
+## Output
+
 ```
 Algorithm            Size       Time
 BubbleSort           100        18.266µs
