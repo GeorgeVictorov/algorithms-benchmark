@@ -13,5 +13,5 @@ func main() {
 
     arrSizes := []int{100, 1000, 10000}
 
-    util.BenchmarkSorts(sorts, arrSizes)
+    util.BenchmarkSorts(sorts, arrSizes, 10)
 }
