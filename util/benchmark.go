@@ -2,7 +2,15 @@ package util
 
 import (
 	"fmt"
+	"sort"
 	"time"
+)
+
+const (
+	ColorReset  = "\033[0m"
+	ColorRed    = "\033[31m"
+	ColorGreen  = "\033[32m"
+    ColorYellow = "\033[33m"
 )
 
 type SortAlgorithm struct {
@@ -10,29 +18,62 @@ type SortAlgorithm struct {
 	Func func([]int) []int
 }
 
-func BenchmarkSorts(sorts []SortAlgorithm, sizes []int, repeats int) {
-    fmt.Printf("%-20s %-10s %-15s\n", "Algorithm", "Size", "Avg Time")
-
-    for _, size := range sizes {
-        arr := RandomArray(size, 10000)
-
-        for _, sort := range sorts {
-            var totalTime time.Duration
-
-            for i := 0; i < repeats; i++ {
-                copiedArr := make([]int, len(arr))
-                copy(copiedArr, arr)
-
-                start := time.Now()
-                sort.Func(copiedArr)
-                elapsed := time.Since(start)
-
-                totalTime += elapsed
-            }
-
-            avgTime := totalTime / time.Duration(repeats)
-
-            fmt.Printf("%-20s %-10d %-15v\n", sort.Name, size, avgTime)
-        }
-    }
+type BenchmarkResult struct {
+	Name    string
+	AvgTime time.Duration
 }
+
+func BenchmarkSorts(sorts []SortAlgorithm, sizes []int, repeats int) {
+	benchmarkStart := time.Now()
+
+	for _, size := range sizes {
+		fmt.Printf("\n=== Size: %d (repeats: %d) ===\n", size, repeats)
+		fmt.Printf("%-20s %-15s\n", "Algorithm", "Avg Time")
+
+		arr := RandomArray(size, 10000)
+
+		results := make([]BenchmarkResult, 0, len(sorts))
+
+		for _, sortAlg := range sorts {
+			var totalTime time.Duration
+
+			for i := 0; i < repeats; i++ {
+				copiedArr := make([]int, len(arr))
+				copy(copiedArr, arr)
+
+				start := time.Now()
+				sortAlg.Func(copiedArr)
+				elapsed := time.Since(start)
+
+				totalTime += elapsed
+			}
+
+			avgTime := totalTime / time.Duration(repeats)
+			results = append(results, BenchmarkResult{
+				Name:    sortAlg.Name,
+				AvgTime: avgTime,
+			})
+		}
+
+		sort.Slice(results, func(i, j int) bool {
+			return results[i].AvgTime < results[j].AvgTime
+		})
+
+        for i, res := range results {
+			color := ColorYellow
+
+			if i == 0 {
+				color = ColorGreen
+			} else if i == len(results)-1 {
+				color = ColorRed
+			}
+
+			fmt.Printf("%s%-20s %-15v%s\n", color, res.Name, res.AvgTime, ColorReset)
+
+		}
+	}
+
+	benchmarkDuration := time.Since(benchmarkStart)
+	fmt.Printf("\nBenchmark completed in: %v\n", benchmarkDuration)
+}
+
