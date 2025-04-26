@@ -14,3 +14,9 @@ A project to test the performance of various sorting algorithms.
 ```bash
 go run main.go
 ```
+
+## Tests
+
+```bash
+go test ./tests
+```
