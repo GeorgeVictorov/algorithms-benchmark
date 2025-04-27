@@ -40,15 +40,8 @@ func benchmarkForSize(sorts []SortAlgorithm, size, repeats int) {
 	var wg sync.WaitGroup
 	wg.Add(len(sorts))
 
-	for i, sort := range sorts {
-		go func(i int, sortAlg SortAlgorithm) {
-			defer wg.Done()
-			avgTime := benchmarkSort(sortAlg, arr, repeats)
-			results[i] = BenchmarkResult{
-				Name:    sortAlg.Name,
-				AvgTime: avgTime,
-			}
-		}(i, sort)
+	for i, sortAlg := range sorts {
+		go runBenchmark(i, sortAlg, arr, repeats, results, &wg)
 	}
 
 	wg.Wait()
@@ -58,6 +51,15 @@ func benchmarkForSize(sorts []SortAlgorithm, size, repeats int) {
 	})
 
 	printResults(results)
+}
+
+func runBenchmark(i int, sortAlg SortAlgorithm, arr []int, repeats int, results []BenchmarkResult, wg *sync.WaitGroup) {
+	defer wg.Done()
+	avgTime := benchmarkSort(sortAlg, arr, repeats)
+	results[i] = BenchmarkResult{
+		Name:    sortAlg.Name,
+		AvgTime: avgTime,
+	}
 }
 
 func benchmarkSort(sortAlg SortAlgorithm, arr []int, repeats int) time.Duration {
