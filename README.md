@@ -28,23 +28,23 @@ go run main.go
 
 === Size: 100 (repeats: 10) ===
 Algorithm            Avg Time
-SelectionSort        5.856µs
-BubbleSortFlag       6.448µs
-BubbleSort           10.225µ
+SelectionSort        6.942µs
+BubbleSortFlag       7.986µs
+BubbleSort           12.03µs
 
 === Size: 1000 (repeats: 10) ===
 Algorithm            Avg Time
-SelectionSort        435.489µs
-BubbleSortFlag       727.172µs
-BubbleSort           900.598µs
+SelectionSort        511.745µs
+BubbleSortFlag       802.67µs
+BubbleSort           1.063225ms
 
 === Size: 10000 (repeats: 10) ===
 Algorithm            Avg Time
-SelectionSort        39.262782ms
-BubbleSortFlag       84.817661ms
-BubbleSort           111.625699ms
+SelectionSort        41.790299ms
+BubbleSortFlag       89.05419ms
+BubbleSort           111.703024ms
 
-
+Benchmark completed in: 1.12888931s
 ```
 
 ## Tests
