@@ -12,6 +12,8 @@ func main() {
 		{Name: "SelectionSort", Func: algorithm.SelectionSort},
         {Name: "InsetionSort", Func: algorithm.InsertionSort},
         {Name: "ShellSort", Func: algorithm.ShellSort},
+        {Name: "QuickSort", Func: algorithm.QuickSort},
+        {Name: "QuickSortInplace", Func: algorithm.QuickSortInplace},
 	}
 
 	arrSizes := []int{100, 1000, 10000}

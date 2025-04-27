@@ -76,3 +76,27 @@ func TestShellSort(t *testing.T) {
 		}
 	}
 }
+
+func TestQuickSort(t *testing.T) {
+	for _, c := range testCases {
+		inputCopy := make([]int, len(c.input))
+		copy(inputCopy, c.input)
+
+		result := algorithm.QuickSort(inputCopy)
+		if !reflect.DeepEqual(result, c.expected) {
+			t.Errorf("TestQuickSort(%v) == %v, expected %v", c.input, result, c.expected)
+		}
+	}
+}
+
+func TestQuickSortInplace(t *testing.T) {
+	for _, c := range testCases {
+		inputCopy := make([]int, len(c.input))
+		copy(inputCopy, c.input)
+
+		result := algorithm.QuickSortInplace(inputCopy)
+		if !reflect.DeepEqual(result, c.expected) {
+			t.Errorf("TestQuickSortInplace(%v) == %v, expected %v", c.input, result, c.expected)
+		}
+	}
+}

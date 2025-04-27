@@ -18,8 +18,8 @@ cd algorithms-benchmark
 
 ## Run
 
-```bash 
-go run main.go 
+```bash
+go run main.go
 ```
 
 ## Output
@@ -28,30 +28,35 @@ go run main.go
 
 === Size: 100 (repeats: 10) ===
 Algorithm            Avg Time
-ShellSort            1.696µs
-InsetionSort         2.263µs
-SelectionSort        6.073µs
-BubbleSortFlag       12.181µs
-BubbleSort           13.683µs
+ShellSort            1.624µs
+QuickSortInplace     1.624µs
+InsetionSort         2.034µs
+SelectionSort        6.684µs
+BubbleSortFlag       8.235µs
+BubbleSort           13.48µs
+QuickSort            39.358µs
 
 === Size: 1000 (repeats: 10) ===
 Algorithm            Avg Time
-ShellSort            62.018µs
-InsetionSort         140.283µs
-SelectionSort        541.42µs
-BubbleSortFlag       865.033µs
-BubbleSort           1.087754ms
+QuickSortInplace     49.171µs
+ShellSort            71.233µs
+InsetionSort         259.251µs
+QuickSort            450.355µs
+SelectionSort        630.498µs
+BubbleSortFlag       814.672µs
+BubbleSort           1.014293ms
 
 === Size: 10000 (repeats: 10) ===
 Algorithm            Avg Time
-ShellSort            820.3µs
-InsetionSort         12.89484ms
-SelectionSort        41.725315ms
-BubbleSortFlag       91.638502ms
-BubbleSort           112.496346ms
+QuickSortInplace     782.736µs
+ShellSort            1.450137ms
+QuickSort            3.628658ms
+InsetionSort         14.376545ms
+SelectionSort        43.040804ms
+BubbleSortFlag       93.21458ms
+BubbleSort           115.37261ms
 
-
-Benchmark completed in: 1.137055023s
+Benchmark completed in: 1.165245154s
 ```
 
 ## Tests
@@ -67,3 +72,5 @@ go test ./tests
 3. **SelectionSort** – Finds the smallest element in the unsorted part and swaps it with the first unsorted element.
 4. **InsertionSort** – Sorts by repeatedly picking the next element and inserting it into its correct position in the array.
 5. **ShellSort** - An optimized Insertion Sort that compares elements far apart, reducing the number of swaps.
+6. **QuickSort** – Recursively sorts by partitioning the array into elements less or greater than a pivot.
+7. **QuickSortInplace** – In-place version of QuickSort that sorts the array without creating new slices.
