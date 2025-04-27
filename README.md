@@ -18,7 +18,8 @@ cd algorithms-benchmark
 
 ## Run
 
-```bash go run main.go ```
+```bash 
+go run main.go ```
 
 ## Output
 
