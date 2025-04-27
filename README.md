@@ -28,23 +28,25 @@ go run main.go
 
 === Size: 100 (repeats: 10) ===
 Algorithm            Avg Time
-SelectionSort        6.942µs
-BubbleSortFlag       7.986µs
-BubbleSort           12.03µs
+InsetionSort         1.81µs
+SelectionSort        5.954µs
+BubbleSortFlag       6.385µs
+BubbleSort           12.286µs
 
 === Size: 1000 (repeats: 10) ===
 Algorithm            Avg Time
-SelectionSort        511.745µs
-BubbleSortFlag       802.67µs
-BubbleSort           1.063225ms
-
+InsetionSort         136.121µs
+SelectionSort        438.998µs
+BubbleSortFlag       686.381µs
+BubbleSort           889.441µ
 === Size: 10000 (repeats: 10) ===
 Algorithm            Avg Time
-SelectionSort        41.790299ms
-BubbleSortFlag       89.05419ms
-BubbleSort           111.703024ms
+InsetionSort         12.760935ms
+SelectionSort        41.364914ms
+BubbleSortFlag       86.736508ms
+BubbleSort           108.776995ms
 
-Benchmark completed in: 1.12888931s
+Benchmark completed in: 1.098451979s
 ```
 
 ## Tests
@@ -58,3 +60,4 @@ go test ./tests
 1. **BubbleSort** – Classic Bubble Sort algorithm.
 2. **BubbleSortFlag** – Optimized version of Bubble Sort that uses a flag to reduce unnecessary iterations.
 3. **SelectionSort** – Finds the smallest element in the unsorted part and swaps it with the first unsorted element.
+4. **InsertionSort** – Sorts by repeatedly picking the next element and inserting it into its correct position in the array.

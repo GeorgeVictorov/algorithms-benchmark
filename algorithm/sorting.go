@@ -42,3 +42,17 @@ func SelectionSort(arr []int) []int {
 	}
 	return arr
 }
+
+func InsertionSort(arr []int) []int {
+	n := len(arr)
+	for i := 1; i < n; i++ {
+		curVal := arr[i]
+		j := i - 1
+		for j >= 0 && arr[j] > curVal {
+			arr[j+1] = arr[j]
+			j--
+		}
+		arr[j+1] = curVal
+	}
+	return arr
+}

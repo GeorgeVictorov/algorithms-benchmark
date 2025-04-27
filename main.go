@@ -10,6 +10,7 @@ func main() {
 		{Name: "BubbleSort", Func: algorithm.BubbleSort},
 		{Name: "BubbleSortFlag", Func: algorithm.BubbleSortFlag},
 		{Name: "SelectionSort", Func: algorithm.SelectionSort},
+        {Name: "InsetionSort", Func: algorithm.InsertionSort},
 	}
 
 	arrSizes := []int{100, 1000, 10000}
