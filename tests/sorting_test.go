@@ -64,3 +64,15 @@ func TestInsertionSort(t *testing.T) {
 		}
 	}
 }
+
+func TestShellSort(t *testing.T) {
+	for _, c := range testCases {
+		inputCopy := make([]int, len(c.input))
+		copy(inputCopy, c.input)
+
+		result := algorithm.ShellSort(inputCopy)
+		if !reflect.DeepEqual(result, c.expected) {
+			t.Errorf("ShellSort(%v) == %v, expected %v", c.input, result, c.expected)
+		}
+	}
+}
