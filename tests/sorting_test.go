@@ -100,3 +100,27 @@ func TestQuickSortInplace(t *testing.T) {
 		}
 	}
 }
+
+func TestMergeSortChan(t *testing.T) {
+	for _, c := range testCases {
+		inputCopy := make([]int, len(c.input))
+		copy(inputCopy, c.input)
+
+		result := algorithm.MergeSortChan(inputCopy)
+		if !reflect.DeepEqual(result, c.expected) {
+			t.Errorf("MergeSortChan(%v) == %v, expected %v", c.input, result, c.expected)
+		}
+	}
+}
+
+func TestMergeSort(t *testing.T) {
+	for _, c := range testCases {
+		inputCopy := make([]int, len(c.input))
+		copy(inputCopy, c.input)
+
+		result := algorithm.MergeSort(inputCopy)
+		if !reflect.DeepEqual(result, c.expected) {
+			t.Errorf("MergeSort(%v) == %v, expected %v", c.input, result, c.expected)
+		}
+	}
+}

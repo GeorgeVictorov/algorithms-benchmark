@@ -119,3 +119,89 @@ func partition(arr []int, low int, high int) int {
 	arr[i+1], arr[high] = arr[high], arr[i+1]
 	return i + 1
 }
+
+func MergeSortChan(arr []int) []int {
+	if len(arr) == 0 {
+		return []int{}
+	}
+	ch := make(chan int)
+	go mergeSortChan(arr, ch)
+
+	sorted := make([]int, 0, len(arr))
+	for v := range ch {
+		sorted = append(sorted, v)
+	}
+	return sorted
+}
+
+func mergeSortChan(arr []int, ch chan int) {
+	defer close(ch)
+	if len(arr) < 2 {
+		ch <- arr[0]
+		return
+	}
+
+	left := make(chan int)
+	right := make(chan int)
+
+	go mergeSortChan(arr[:len(arr)/2], left)
+	go mergeSortChan(arr[len(arr)/2:], right)
+
+	mergech(left, right, ch)
+}
+
+func mergech(left, right, c chan int) {
+	val, ok := <-left
+	val2, ok2 := <-right
+
+	for ok && ok2 {
+		if val < val2 {
+			c <- val
+			val, ok = <-left
+		} else {
+			c <- val2
+			val2, ok2 = <-right
+		}
+	}
+	for ok {
+		c <- val
+		val, ok = <-left
+	}
+	for ok2 {
+		c <- val2
+		val2, ok2 = <-right
+	}
+}
+
+func MergeSort(arr []int) []int {
+	if len(arr) <= 1 {
+		return arr
+	}
+
+	mid := len(arr) / 2
+
+	left := MergeSort(arr[:mid])
+	right := MergeSort(arr[mid:])
+
+	return merge(left, right)
+}
+
+func merge(left, right []int) []int {
+	result := make([]int, 0, len(left)+len(right))
+	i, j := 0, 0
+
+	for i < len(left) && j < len(right) {
+		if left[i] <= right[j] {
+			result = append(result, left[i])
+			i++
+		} else {
+			result = append(result, right[j])
+			j++
+		}
+	}
+
+	result = append(result, left[i:]...)
+	result = append(result, right[j:]...)
+
+	return result
+}

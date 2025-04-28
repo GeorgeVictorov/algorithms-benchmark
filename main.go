@@ -16,6 +16,8 @@ func main() {
 		util.SortAlgorithmFunc{N: "ShellSort", F: algorithm.ShellSort},
 		util.SortAlgorithmFunc{N: "QuickSort", F: algorithm.QuickSort},
 		util.SortAlgorithmFunc{N: "QuickSortInplace", F: algorithm.QuickSortInplace},
+        util.SortAlgorithmFunc{N: "MergeSort", F: algorithm.MergeSort},
+        util.SortAlgorithmFunc{N: "MergeSortChan", F: algorithm.MergeSortChan},
 	}
 
 	arrSizes := []int{100, 1000, 10000}
