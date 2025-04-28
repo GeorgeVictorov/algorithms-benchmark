@@ -30,7 +30,7 @@ go run main.go
 Algorithm            Avg Time
 ShellSort            1.624µs
 QuickSortInplace     1.624µs
-InsetionSort         2.034µs
+InsertionSort         2.034µs
 SelectionSort        6.684µs
 BubbleSortFlag       8.235µs
 BubbleSort           13.48µs
@@ -40,7 +40,7 @@ QuickSort            39.358µs
 Algorithm            Avg Time
 QuickSortInplace     49.171µs
 ShellSort            71.233µs
-InsetionSort         259.251µs
+InsertionSort         259.251µs
 QuickSort            450.355µs
 SelectionSort        630.498µs
 BubbleSortFlag       814.672µs
@@ -51,7 +51,7 @@ Algorithm            Avg Time
 QuickSortInplace     782.736µs
 ShellSort            1.450137ms
 QuickSort            3.628658ms
-InsetionSort         14.376545ms
+InsertionSort         14.376545ms
 SelectionSort        43.040804ms
 BubbleSortFlag       93.21458ms
 BubbleSort           115.37261ms
