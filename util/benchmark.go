@@ -7,9 +7,24 @@ import (
 	"time"
 )
 
-type SortAlgorithm struct {
-	Name string
-	Func func([]int) []int
+const MaxValue = 10000
+
+type Sorter interface {
+	Name() string
+	Sort([]int) []int
+}
+
+type SortAlgorithmFunc struct {
+	N string
+	F func([]int) []int
+}
+
+func (s SortAlgorithmFunc) Name() string {
+	return s.N
+}
+
+func (s SortAlgorithmFunc) Sort(arr []int) []int {
+	return s.F(arr)
 }
 
 type BenchmarkResult struct {
@@ -28,7 +43,7 @@ func (r *RandomArrayGenerator) Generate(size, maxValue int) []int {
 	return RandomArray(size, maxValue)
 }
 
-func BenchmarkSorts(sorts []SortAlgorithm, sizes []int, repeats int, generator ArrayGenerator) {
+func BenchmarkSorts(sorts []Sorter, sizes []int, repeats int, generator ArrayGenerator) {
 	benchmarkStart := time.Now()
 
 	for _, size := range sizes {
@@ -41,16 +56,22 @@ func BenchmarkSorts(sorts []SortAlgorithm, sizes []int, repeats int, generator A
 	fmt.Printf("\nBenchmark completed in: %v\n", benchmarkDuration)
 }
 
-func benchmarkForSize(sorts []SortAlgorithm, arr []int, size, repeats int) []BenchmarkResult {
-	results := make([]BenchmarkResult, len(sorts))
+func benchmarkForSize(sorts []Sorter, arr []int, size, repeats int) []BenchmarkResult {
 	var wg sync.WaitGroup
-	wg.Add(len(sorts))
+	resultsCh := make(chan BenchmarkResult, len(sorts))
 
-	for i, sortAlg := range sorts {
-		go runBenchmark(i, sortAlg, arr, repeats, results, &wg, size)
+	wg.Add(len(sorts))
+	for _, sortAlg := range sorts {
+		go runBenchmark(sortAlg, arr, repeats, size, resultsCh, &wg)
 	}
 
 	wg.Wait()
+	close(resultsCh)
+
+	var results []BenchmarkResult
+	for res := range resultsCh {
+		results = append(results, res)
+	}
 
 	sort.Slice(results, func(i, j int) bool {
 		return results[i].AvgTime < results[j].AvgTime
@@ -59,17 +80,18 @@ func benchmarkForSize(sorts []SortAlgorithm, arr []int, size, repeats int) []Ben
 	return results
 }
 
-func runBenchmark(i int, sortAlg SortAlgorithm, arr []int, repeats int, results []BenchmarkResult, wg *sync.WaitGroup, size int) {
+func runBenchmark(sortAlg Sorter, arr []int, repeats, size int, resultsCh chan<- BenchmarkResult, wg *sync.WaitGroup) {
 	defer wg.Done()
+
 	avgTime := benchmarkSort(sortAlg, arr, repeats)
-	results[i] = BenchmarkResult{
-		Name:    sortAlg.Name,
+	resultsCh <- BenchmarkResult{
+		Name:    sortAlg.Name(),
 		Size:    size,
 		AvgTime: avgTime,
 	}
 }
 
-func benchmarkSort(sortAlg SortAlgorithm, arr []int, repeats int) time.Duration {
+func benchmarkSort(sortAlg Sorter, arr []int, repeats int) time.Duration {
 	var totalTime time.Duration
 
 	for i := 0; i < repeats; i++ {
@@ -77,7 +99,7 @@ func benchmarkSort(sortAlg SortAlgorithm, arr []int, repeats int) time.Duration 
 		copy(copiedArr, arr)
 
 		start := time.Now()
-		sortAlg.Func(copiedArr)
+		sortAlg.Sort(copiedArr)
 		totalTime += time.Since(start)
 	}
 
