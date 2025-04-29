@@ -1,5 +1,10 @@
 package algorithm
 
+import (
+	"math"
+	"runtime"
+)
+
 func BubbleSort(arr []int) []int {
 	n := len(arr)
 	for i := 0; i < n-1; i++ {
@@ -120,57 +125,33 @@ func partition(arr []int, low int, high int) int {
 	return i + 1
 }
 
-func MergeSortChan(arr []int) []int {
-	if len(arr) == 0 {
-		return []int{}
-	}
-	ch := make(chan int)
-	go mergeSortChan(arr, ch)
-
-	sorted := make([]int, 0, len(arr))
-	for v := range ch {
-		sorted = append(sorted, v)
-	}
-	return sorted
+func MergeSortParallel(arr []int) []int {
+	cpuCount := runtime.NumCPU()
+	maxDepth := 2 * int(math.Log2(float64(cpuCount)))
+	return mergeSortParallelInternal(arr, maxDepth)
 }
 
-func mergeSortChan(arr []int, ch chan int) {
-	defer close(ch)
-	if len(arr) < 2 {
-		ch <- arr[0]
-		return
+func mergeSortParallelInternal(arr []int, depth int) []int {
+	if len(arr) <= 1 {
+		return arr
+	}
+	if depth <= 0 {
+		mid := len(arr) / 2
+		left := mergeSortParallelInternal(arr[:mid], 0)
+		right := mergeSortParallelInternal(arr[mid:], 0)
+		return merge(left, right)
 	}
 
-	left := make(chan int)
-	right := make(chan int)
+	mid := len(arr) / 2
+	leftChan := make(chan []int)
+	rightChan := make(chan []int)
 
-	go mergeSortChan(arr[:len(arr)/2], left)
-	go mergeSortChan(arr[len(arr)/2:], right)
+	go func() { leftChan <- mergeSortParallelInternal(arr[:mid], depth-1) }()
+	go func() { rightChan <- mergeSortParallelInternal(arr[mid:], depth-1) }()
 
-	mergech(left, right, ch)
-}
-
-func mergech(left, right, c chan int) {
-	val, ok := <-left
-	val2, ok2 := <-right
-
-	for ok && ok2 {
-		if val < val2 {
-			c <- val
-			val, ok = <-left
-		} else {
-			c <- val2
-			val2, ok2 = <-right
-		}
-	}
-	for ok {
-		c <- val
-		val, ok = <-left
-	}
-	for ok2 {
-		c <- val2
-		val2, ok2 = <-right
-	}
+	left := <-leftChan
+	right := <-rightChan
+	return merge(left, right)
 }
 
 func MergeSort(arr []int) []int {

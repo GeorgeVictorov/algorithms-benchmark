@@ -25,40 +25,42 @@ go run .
 ## Output
 
 ```
-
 === Size: 100 (repeats: 10) ===
-Algorithm            Avg Time
-ShellSort            1.624µs
-QuickSortInplace     1.624µs
-InsertionSort         2.034µs
-SelectionSort        6.684µs
-BubbleSortFlag       8.235µs
-BubbleSort           13.48µs
-QuickSort            39.358µs
+Algorithm            Size       Avg Time
+InsertionSort        100        2.213µs
+ShellSort            100        3.135µs
+BubbleSort           100        10.12µs
+BubbleSortFlag       100        10.589µs
+QuickSortInplace     100        10.972µs
+SelectionSort        100        11.884µs
+MergeSort            100        19.958µs
+QuickSort            100        51.024µs
+MergeSortParallel    100        162.644µs
 
 === Size: 1000 (repeats: 10) ===
-Algorithm            Avg Time
-QuickSortInplace     49.171µs
-ShellSort            71.233µs
-InsertionSort         259.251µs
-QuickSort            450.355µs
-SelectionSort        630.498µs
-BubbleSortFlag       814.672µs
-BubbleSort           1.014293ms
+Algorithm            Size       Avg Time
+QuickSortInplace     1000       50.663µs
+ShellSort            1000       70.655µs
+InsertionSort        1000       222.576µs
+MergeSortParallel    1000       253.301µs
+MergeSort            1000       256.371µs
+QuickSort            1000       506.507µs
+SelectionSort        1000       633.086µs
+BubbleSortFlag       1000       853.834µs
+BubbleSort           1000       1.093497ms
 
 === Size: 10000 (repeats: 10) ===
-Algorithm            Avg Time
-QuickSortInplace     782.736µs
-ShellSort            1.450137ms
-QuickSort            3.628658ms
-InsertionSort         14.376545ms
-SelectionSort        43.040804ms
-BubbleSortFlag       93.21458ms
-BubbleSort           115.37261ms
-
-Benchmark completed in: 1.165245154s
+Algorithm            Size       Avg Time
+QuickSortInplace     10000      1.454827ms
+MergeSortParallel    10000      2.034581ms
+ShellSort            10000      2.040737ms
+MergeSort            10000      3.386363ms
+QuickSort            10000      5.492465ms
+InsertionSort        10000      16.180876ms
+SelectionSort        10000      45.624726ms
+BubbleSortFlag       10000      89.844705ms
+BubbleSort           10000      112.249365ms
 ```
-
 ## Tests
 
 ```bash
@@ -74,3 +76,5 @@ go test ./tests
 5. **ShellSort** - An optimized Insertion Sort that compares elements far apart, reducing the number of swaps.
 6. **QuickSort** – Recursively sorts by partitioning the array into elements less or greater than a pivot.
 7. **QuickSortInplace** – In-place version of QuickSort that sorts the array without creating new slices.
+8. **MergeSort** – A divide-and-conquer algorithm that recursively splits and merges the array in sorted order.
+9. **MergeSortParallel** – A parallelized version of MergeSort that sorts array halves concurrently using goroutines for better performance on multi-core CPUs.

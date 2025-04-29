@@ -101,14 +101,14 @@ func TestQuickSortInplace(t *testing.T) {
 	}
 }
 
-func TestMergeSortChan(t *testing.T) {
+func TestMergeSortParallel(t *testing.T) {
 	for _, c := range testCases {
 		inputCopy := make([]int, len(c.input))
 		copy(inputCopy, c.input)
 
-		result := algorithm.MergeSortChan(inputCopy)
+		result := algorithm.MergeSortParallel(inputCopy)
 		if !reflect.DeepEqual(result, c.expected) {
-			t.Errorf("MergeSortChan(%v) == %v, expected %v", c.input, result, c.expected)
+			t.Errorf("MergeSortParallel(%v) == %v, expected %v", c.input, result, c.expected)
 		}
 	}
 }
