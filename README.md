@@ -2,13 +2,6 @@
 
 A project to test the performance of various sorting algorithms.
 
-## Structure
-
-- `algorithm/`
-- `util/`
-- `tests/`
-- `main.go`
-
 ## Installation
 
 ```bash

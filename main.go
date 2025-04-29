@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/GeorgeVictorov/algorithms-benchmark/algorithm"
+	"github.com/GeorgeVictorov/algorithms-benchmark/algorithm/sorting"
 	"github.com/GeorgeVictorov/algorithms-benchmark/util"
 )
 
@@ -9,15 +9,15 @@ const Repeats = 10
 
 func main() {
 	sorts := []util.Sorter{
-		util.SortAlgorithmFunc{N: "BubbleSort", F: algorithm.BubbleSort},
-		util.SortAlgorithmFunc{N: "BubbleSortFlag", F: algorithm.BubbleSortFlag},
-		util.SortAlgorithmFunc{N: "SelectionSort", F: algorithm.SelectionSort},
-		util.SortAlgorithmFunc{N: "InsertionSort", F: algorithm.InsertionSort},
-		util.SortAlgorithmFunc{N: "ShellSort", F: algorithm.ShellSort},
-		util.SortAlgorithmFunc{N: "QuickSort", F: algorithm.QuickSort},
-		util.SortAlgorithmFunc{N: "QuickSortInplace", F: algorithm.QuickSortInplace},
-		util.SortAlgorithmFunc{N: "MergeSort", F: algorithm.MergeSort},
-		util.SortAlgorithmFunc{N: "MergeSortParallel", F: algorithm.MergeSortParallel},
+		util.SortAlgorithmFunc{N: "BubbleSort", F: sorting.BubbleSort},
+		util.SortAlgorithmFunc{N: "BubbleSortFlag", F: sorting.BubbleSortFlag},
+		util.SortAlgorithmFunc{N: "SelectionSort", F: sorting.SelectionSort},
+		util.SortAlgorithmFunc{N: "InsertionSort", F: sorting.InsertionSort},
+		util.SortAlgorithmFunc{N: "ShellSort", F: sorting.ShellSort},
+		util.SortAlgorithmFunc{N: "QuickSort", F: sorting.QuickSort},
+		util.SortAlgorithmFunc{N: "QuickSortInplace", F: sorting.QuickSortInplace},
+		util.SortAlgorithmFunc{N: "MergeSort", F: sorting.MergeSort},
+		util.SortAlgorithmFunc{N: "MergeSortParallel", F: sorting.MergeSortParallel},
 	}
 
 	arrSizes := []int{100, 1000, 10000}

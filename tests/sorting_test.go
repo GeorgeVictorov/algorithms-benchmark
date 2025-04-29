@@ -1,7 +1,7 @@
 package tests
 
 import (
-	"github.com/GeorgeVictorov/algorithms-benchmark/algorithm"
+	"github.com/GeorgeVictorov/algorithms-benchmark/algorithm/sorting"
 	"reflect"
 	"testing"
 )
@@ -22,7 +22,7 @@ func TestBubbleSort(t *testing.T) {
 		inputCopy := make([]int, len(c.input))
 		copy(inputCopy, c.input)
 
-		result := algorithm.BubbleSort(inputCopy)
+		result := sorting.BubbleSort(inputCopy)
 		if !reflect.DeepEqual(result, c.expected) {
 			t.Errorf("BubbleSort(%v) == %v, expected %v", c.input, result, c.expected)
 		}
@@ -34,7 +34,7 @@ func TestBubbleSortFlag(t *testing.T) {
 		inputCopy := make([]int, len(c.input))
 		copy(inputCopy, c.input)
 
-		result := algorithm.BubbleSortFlag(inputCopy)
+		result := sorting.BubbleSortFlag(inputCopy)
 		if !reflect.DeepEqual(result, c.expected) {
 			t.Errorf("BubbleSortFlag(%v) == %v, expected %v", c.input, result, c.expected)
 		}
@@ -46,7 +46,7 @@ func TestSelectionSort(t *testing.T) {
 		inputCopy := make([]int, len(c.input))
 		copy(inputCopy, c.input)
 
-		result := algorithm.SelectionSort(inputCopy)
+		result := sorting.SelectionSort(inputCopy)
 		if !reflect.DeepEqual(result, c.expected) {
 			t.Errorf("SelectionSort(%v) == %v, expected %v", c.input, result, c.expected)
 		}
@@ -58,7 +58,7 @@ func TestInsertionSort(t *testing.T) {
 		inputCopy := make([]int, len(c.input))
 		copy(inputCopy, c.input)
 
-		result := algorithm.InsertionSort(inputCopy)
+		result := sorting.InsertionSort(inputCopy)
 		if !reflect.DeepEqual(result, c.expected) {
 			t.Errorf("InsertionSort(%v) == %v, expected %v", c.input, result, c.expected)
 		}
@@ -70,7 +70,7 @@ func TestShellSort(t *testing.T) {
 		inputCopy := make([]int, len(c.input))
 		copy(inputCopy, c.input)
 
-		result := algorithm.ShellSort(inputCopy)
+		result := sorting.ShellSort(inputCopy)
 		if !reflect.DeepEqual(result, c.expected) {
 			t.Errorf("ShellSort(%v) == %v, expected %v", c.input, result, c.expected)
 		}
@@ -82,7 +82,7 @@ func TestQuickSort(t *testing.T) {
 		inputCopy := make([]int, len(c.input))
 		copy(inputCopy, c.input)
 
-		result := algorithm.QuickSort(inputCopy)
+		result := sorting.QuickSort(inputCopy)
 		if !reflect.DeepEqual(result, c.expected) {
 			t.Errorf("TestQuickSort(%v) == %v, expected %v", c.input, result, c.expected)
 		}
@@ -94,7 +94,7 @@ func TestQuickSortInplace(t *testing.T) {
 		inputCopy := make([]int, len(c.input))
 		copy(inputCopy, c.input)
 
-		result := algorithm.QuickSortInplace(inputCopy)
+		result := sorting.QuickSortInplace(inputCopy)
 		if !reflect.DeepEqual(result, c.expected) {
 			t.Errorf("TestQuickSortInplace(%v) == %v, expected %v", c.input, result, c.expected)
 		}
@@ -106,7 +106,7 @@ func TestMergeSortParallel(t *testing.T) {
 		inputCopy := make([]int, len(c.input))
 		copy(inputCopy, c.input)
 
-		result := algorithm.MergeSortParallel(inputCopy)
+		result := sorting.MergeSortParallel(inputCopy)
 		if !reflect.DeepEqual(result, c.expected) {
 			t.Errorf("MergeSortParallel(%v) == %v, expected %v", c.input, result, c.expected)
 		}
@@ -118,7 +118,7 @@ func TestMergeSort(t *testing.T) {
 		inputCopy := make([]int, len(c.input))
 		copy(inputCopy, c.input)
 
-		result := algorithm.MergeSort(inputCopy)
+		result := sorting.MergeSort(inputCopy)
 		if !reflect.DeepEqual(result, c.expected) {
 			t.Errorf("MergeSort(%v) == %v, expected %v", c.input, result, c.expected)
 		}
