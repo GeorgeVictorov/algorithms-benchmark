@@ -21,41 +21,44 @@ go run .
 
 === Size: 100 (repeats: 10) ===
 Algorithm            Size       Avg Time
-QuickSortInplace     100        1.452µs
-ShellSort            100        1.928µs
-InsertionSort        100        1.979µs
-SelectionSort        100        6.098µs
-BubbleSortFlag       100        7.129µs
-BubbleSort           100        10.652µs
-MergeSort            100        15.679µs
-QuickSort            100        47.186µs
-MergeSortParallel    100        134.97µs
+InsertionSort        100        2.536µs
+ShellSort            100        2.544µs
+HeapSort             100        3.755µs
+QuickSortInplace     100        6.613µs
+SelectionSort        100        8.574µs
+BubbleSortFlag       100        9.311µs
+BubbleSort           100        14.41µs
+MergeSort            100        14.896µs
+QuickSort            100        50.639µs
+MergeSortParallel    100        125.473µs
 
 === Size: 1000 (repeats: 10) ===
 Algorithm            Size       Avg Time
-QuickSortInplace     1000       45.979µs
-ShellSort            1000       98.449µs
-MergeSort            1000       266.012µs
-MergeSortParallel    1000       267.944µs
-InsertionSort        1000       292.725µs
-QuickSort            1000       550.24µs
-SelectionSort        1000       696.185µs
-BubbleSortFlag       1000       971.422µs
-BubbleSort           1000       1.177088ms
+QuickSortInplace     1000       66.024µs
+ShellSort            1000       96.182µs
+HeapSort             1000       148.448µs
+MergeSort            1000       323.465µs
+MergeSortParallel    1000       328.343µs
+InsertionSort        1000       384.215µs
+QuickSort            1000       597.873µs
+SelectionSort        1000       849.277µs
+BubbleSortFlag       1000       1.117405ms
+BubbleSort           1000       1.412816ms
 
 === Size: 10000 (repeats: 10) ===
 Algorithm            Size       Avg Time
-QuickSortInplace     10000      1.529824ms
-MergeSortParallel    10000      2.086344ms
-ShellSort            10000      2.293575ms
-MergeSort            10000      3.409982ms
-QuickSort            10000      5.326074ms
-InsertionSort        10000      15.526453ms
-SelectionSort        10000      45.138135ms
-BubbleSortFlag       10000      92.03053ms
-BubbleSort           10000      115.262454ms
+QuickSortInplace     10000      1.75203ms
+ShellSort            10000      2.466562ms
+HeapSort             10000      2.668541ms
+MergeSortParallel    10000      2.78117ms
+MergeSort            10000      3.894474ms
+QuickSort            10000      5.968342ms
+InsertionSort        10000      16.335814ms
+SelectionSort        10000      49.982097ms
+BubbleSortFlag       10000      93.305913ms
+BubbleSort           10000      117.043312ms
 
-Benchmark completed in: 1.167011367s
+Benchmark completed in: 1.187922743s
 ```
 ## Tests
 
