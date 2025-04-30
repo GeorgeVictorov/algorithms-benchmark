@@ -5,7 +5,12 @@ import (
 	"github.com/GeorgeVictorov/algorithms-benchmark/util"
 )
 
-const Repeats = 10
+const (
+	Repeats        = 10
+	ArraySizeOne   = 100
+	ArraySizeTwo   = 1000
+	ArraySizeThree = 10000
+)
 
 func main() {
 	sorts := []util.Sorter{
@@ -21,7 +26,7 @@ func main() {
 		util.SortAlgorithmFunc{N: "HeapSort", F: sorting.HeapSort},
 	}
 
-	arrSizes := []int{100, 1000, 10000}
+	arrSizes := []int{ArraySizeOne, ArraySizeTwo, ArraySizeThree}
 	generator := &util.RandomArrayGenerator{}
 
 	util.BenchmarkSorts(sorts, arrSizes, Repeats, generator)
