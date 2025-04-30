@@ -1,8 +1,8 @@
 package sorting
 
 import (
-    "math"
-    "runtime"
+	"math"
+	"runtime"
 )
 
 func MergeSortParallel(arr []int) []int {

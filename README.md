@@ -74,3 +74,4 @@ go test ./tests
 7. **QuickSortInplace** – In-place version of QuickSort that sorts the array without creating new slices.
 8. **MergeSort** – A divide-and-conquer algorithm that recursively splits and merges the array in sorted order.
 9. **MergeSortParallel** – A parallelized version of MergeSort that sorts array halves concurrently using goroutines for better performance on multi-core CPUs.
+10. **HeapSort** – Sorts by building a binary heap and extracting the max (or min) element, with O(n log n) time complexity.
