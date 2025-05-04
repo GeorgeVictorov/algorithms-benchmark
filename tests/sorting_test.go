@@ -136,3 +136,15 @@ func TestHeapSort(t *testing.T) {
 		}
 	}
 }
+
+func TestTimSort(t *testing.T) {
+	for _, c := range testCases {
+		inputCopy := make([]int, len(c.input))
+		copy(inputCopy, c.input)
+
+		result := sorting.TimSort(inputCopy)
+		if !reflect.DeepEqual(result, c.expected) {
+			t.Errorf("TimSort(%v) == %v, expected %v", c.input, result, c.expected)
+		}
+	}
+}

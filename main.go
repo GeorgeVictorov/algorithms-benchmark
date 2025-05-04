@@ -24,6 +24,7 @@ func main() {
 		util.SortAlgorithmFunc{N: "MergeSort", F: sorting.MergeSort},
 		util.SortAlgorithmFunc{N: "MergeSortParallel", F: sorting.MergeSortParallel},
 		util.SortAlgorithmFunc{N: "HeapSort", F: sorting.HeapSort},
+		util.SortAlgorithmFunc{N: "TimSort", F: sorting.TimSort},
 	}
 
 	arrSizes := []int{ArraySizeOne, ArraySizeTwo, ArraySizeThree}

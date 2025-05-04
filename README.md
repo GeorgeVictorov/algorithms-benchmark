@@ -21,44 +21,47 @@ go run .
 
 === Size: 100 (repeats: 10) ===
 Algorithm            Size       Avg Time
-InsertionSort        100        2.119µs
-HeapSort             100        2.483µs
-QuickSortInplace     100        3.735µs
-ShellSort            100        4.14µs
-SelectionSort        100        6.557µs
-BubbleSortFlag       100        7.29µs
-BubbleSort           100        11.526µs
-MergeSort            100        15.777µs
-QuickSort            100        43.264µs
-MergeSortParallel    100        161.278µs
+TimSort              100        1.793µs
+ShellSort            100        2.393µs
+InsertionSort        100        2.907µs
+HeapSort             100        3.248µs
+QuickSortInplace     100        5.811µs
+SelectionSort        100        8.044µs
+BubbleSortFlag       100        9.705µs
+MergeSort            100        12.629µs
+BubbleSort           100        14.252µs
+QuickSort            100        54.454µs
+MergeSortParallel    100        129.626µs
 
 === Size: 1000 (repeats: 10) ===
 Algorithm            Size       Avg Time
-QuickSortInplace     1000       47.305µs
-ShellSort            1000       67.29µs
-HeapSort             1000       129.218µs
-MergeSortParallel    1000       249.818µs
-MergeSort            1000       254.639µs
-InsertionSort        1000       287.493µs
-QuickSort            1000       572.126µs
-SelectionSort        1000       751.647µs
-BubbleSortFlag       1000       964.797µs
-BubbleSort           1000       1.169481ms
+TimSort              1000       24.984µs
+QuickSortInplace     1000       66.643µs
+ShellSort            1000       87.655µs
+HeapSort             1000       222.897µs
+MergeSort            1000       273.013µs
+MergeSortParallel    1000       313.705µs
+InsertionSort        1000       321.808µs
+QuickSort            1000       571.443µs
+SelectionSort        1000       787.306µs
+BubbleSortFlag       1000       983.771µs
+BubbleSort           1000       1.259172ms
 
 === Size: 10000 (repeats: 10) ===
 Algorithm            Size       Avg Time
-QuickSortInplace     10000      1.35887ms
-ShellSort            10000      2.163767ms
-HeapSort             10000      2.454318ms
-MergeSortParallel    10000      2.556763ms
-MergeSort            10000      3.588591ms
-QuickSort            10000      5.90826ms
-InsertionSort        10000      16.209934ms
-SelectionSort        10000      50.045062ms
-BubbleSortFlag       10000      94.186956ms
-BubbleSort           10000      117.202896ms
+TimSort              10000      733.859µs
+QuickSortInplace     10000      1.412321ms
+ShellSort            10000      2.108549ms
+MergeSortParallel    10000      2.401364ms
+HeapSort             10000      2.552457ms
+MergeSort            10000      3.541477ms
+QuickSort            10000      5.627927ms
+InsertionSort        10000      15.930532ms
+SelectionSort        10000      49.932765ms
+BubbleSortFlag       10000      92.517422ms
+BubbleSort           10000      114.506208ms
 
-Benchmark completed in: 1.186495821s
+Benchmark completed in: 1.161568793s
 ```
 ## Tests
 
@@ -78,3 +81,4 @@ go test ./tests
 8. **MergeSort** – A divide-and-conquer algorithm that recursively splits and merges the array in sorted order.
 9. **MergeSortParallel** – A parallelized version of MergeSort that sorts array halves concurrently using goroutines for better performance on multi-core CPUs.
 10. **HeapSort** – Sorts by building a binary heap and extracting the max (or min) element, with O(n log n) time complexity.
+11. **TimSort** – A hybrid sorting algorithm combining Insertion Sort and Merge Sort.
