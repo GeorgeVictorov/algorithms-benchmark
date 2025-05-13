@@ -1,6 +1,7 @@
 package tests
 
 import (
+	"fmt"
 	"reflect"
 	"testing"
 
@@ -18,137 +19,33 @@ var testCases = []struct {
 	{input: []int{0, 0, 0}, expected: []int{0, 0, 0}},
 }
 
-func TestBubbleSort(t *testing.T) {
+func runSortTest(t *testing.T, name string, sortFunc func([]int) []int) {
 	for _, c := range testCases {
-		inputCopy := make([]int, len(c.input))
-		copy(inputCopy, c.input)
+		testname := fmt.Sprintf("input=%v", c.input)
+		c := c
+		t.Run(testname, func(t *testing.T) {
+			inputCopy := make([]int, len(c.input))
+			copy(inputCopy, c.input)
 
-		result := sorting.BubbleSort(inputCopy)
-		if !reflect.DeepEqual(result, c.expected) {
-			t.Errorf("BubbleSort(%v) == %v, expected %v", c.input, result, c.expected)
-		}
+			result := sortFunc(inputCopy)
+			if !reflect.DeepEqual(result, c.expected) {
+				t.Errorf("%s(%v) == %v, expected %v", name, c.input, result, c.expected)
+			}
+		})
 	}
 }
 
-func TestBubbleSortFlag(t *testing.T) {
-	for _, c := range testCases {
-		inputCopy := make([]int, len(c.input))
-		copy(inputCopy, c.input)
-
-		result := sorting.BubbleSortFlag(inputCopy)
-		if !reflect.DeepEqual(result, c.expected) {
-			t.Errorf("BubbleSortFlag(%v) == %v, expected %v", c.input, result, c.expected)
-		}
-	}
-}
-
-func TestSelectionSort(t *testing.T) {
-	for _, c := range testCases {
-		inputCopy := make([]int, len(c.input))
-		copy(inputCopy, c.input)
-
-		result := sorting.SelectionSort(inputCopy)
-		if !reflect.DeepEqual(result, c.expected) {
-			t.Errorf("SelectionSort(%v) == %v, expected %v", c.input, result, c.expected)
-		}
-	}
-}
-
-func TestInsertionSort(t *testing.T) {
-	for _, c := range testCases {
-		inputCopy := make([]int, len(c.input))
-		copy(inputCopy, c.input)
-
-		result := sorting.InsertionSort(inputCopy)
-		if !reflect.DeepEqual(result, c.expected) {
-			t.Errorf("InsertionSort(%v) == %v, expected %v", c.input, result, c.expected)
-		}
-	}
-}
-
-func TestShellSort(t *testing.T) {
-	for _, c := range testCases {
-		inputCopy := make([]int, len(c.input))
-		copy(inputCopy, c.input)
-
-		result := sorting.ShellSort(inputCopy)
-		if !reflect.DeepEqual(result, c.expected) {
-			t.Errorf("ShellSort(%v) == %v, expected %v", c.input, result, c.expected)
-		}
-	}
-}
-
-func TestQuickSort(t *testing.T) {
-	for _, c := range testCases {
-		inputCopy := make([]int, len(c.input))
-		copy(inputCopy, c.input)
-
-		result := sorting.QuickSort(inputCopy)
-		if !reflect.DeepEqual(result, c.expected) {
-			t.Errorf("TestQuickSort(%v) == %v, expected %v", c.input, result, c.expected)
-		}
-	}
-}
-
-func TestQuickSortInplace(t *testing.T) {
-	for _, c := range testCases {
-		inputCopy := make([]int, len(c.input))
-		copy(inputCopy, c.input)
-
-		result := sorting.QuickSortInplace(inputCopy)
-		if !reflect.DeepEqual(result, c.expected) {
-			t.Errorf("TestQuickSortInplace(%v) == %v, expected %v", c.input, result, c.expected)
-		}
-	}
-}
-
-func TestMergeSortParallel(t *testing.T) {
-	for _, c := range testCases {
-		inputCopy := make([]int, len(c.input))
-		copy(inputCopy, c.input)
-
-		result := sorting.MergeSortParallel(inputCopy)
-		if !reflect.DeepEqual(result, c.expected) {
-			t.Errorf("MergeSortParallel(%v) == %v, expected %v", c.input, result, c.expected)
-		}
-	}
-}
-
-func TestMergeSort(t *testing.T) {
-	for _, c := range testCases {
-		inputCopy := make([]int, len(c.input))
-		copy(inputCopy, c.input)
-
-		result := sorting.MergeSort(inputCopy)
-		if !reflect.DeepEqual(result, c.expected) {
-			t.Errorf("MergeSort(%v) == %v, expected %v", c.input, result, c.expected)
-		}
-	}
-}
-
-func TestHeapSort(t *testing.T) {
-	for _, c := range testCases {
-		inputCopy := make([]int, len(c.input))
-		copy(inputCopy, c.input)
-
-		result := sorting.HeapSort(inputCopy)
-		if !reflect.DeepEqual(result, c.expected) {
-			t.Errorf("HeapSort(%v) == %v, expected %v", c.input, result, c.expected)
-		}
-	}
-}
-
-func TestTimSort(t *testing.T) {
-	for _, c := range testCases {
-		inputCopy := make([]int, len(c.input))
-		copy(inputCopy, c.input)
-
-		result := sorting.TimSort(inputCopy)
-		if !reflect.DeepEqual(result, c.expected) {
-			t.Errorf("TimSort(%v) == %v, expected %v", c.input, result, c.expected)
-		}
-	}
-}
+func TestBubbleSort(t *testing.T)       { runSortTest(t, "BubbleSort", sorting.BubbleSort) }
+func TestBubbleSortFlag(t *testing.T)   { runSortTest(t, "BubbleSortFlag", sorting.BubbleSortFlag) }
+func TestSelectionSort(t *testing.T)    { runSortTest(t, "SelectionSort", sorting.SelectionSort) }
+func TestInsertionSort(t *testing.T)    { runSortTest(t, "InsertionSort", sorting.InsertionSort) }
+func TestShellSort(t *testing.T)        { runSortTest(t, "ShellSort", sorting.ShellSort) }
+func TestQuickSort(t *testing.T)        { runSortTest(t, "QuickSort", sorting.QuickSort) }
+func TestQuickSortInplace(t *testing.T) { runSortTest(t, "QuickSortInplace", sorting.QuickSortInplace) }
+func TestMergeSort(t *testing.T)        { runSortTest(t, "MergeSort", sorting.MergeSort) }
+func TestMergeSortP(t *testing.T)       { runSortTest(t, "MergeSortParallel", sorting.MergeSortParallel) }
+func TestHeapSort(t *testing.T)         { runSortTest(t, "HeapSort", sorting.HeapSort) }
+func TestTimSort(t *testing.T)          { runSortTest(t, "TimSort", sorting.TimSort) }
 
 func BenchmarkBubbleSort(b *testing.B) {
 	for b.Loop() {
