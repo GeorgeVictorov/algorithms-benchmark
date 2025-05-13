@@ -1,9 +1,10 @@
 package tests
 
 import (
-	"github.com/GeorgeVictorov/algorithms-benchmark/algorithm/sorting"
 	"reflect"
 	"testing"
+
+	"github.com/GeorgeVictorov/algorithms-benchmark/algorithm/sorting"
 )
 
 var testCases = []struct {
@@ -145,6 +146,16 @@ func TestTimSort(t *testing.T) {
 		result := sorting.TimSort(inputCopy)
 		if !reflect.DeepEqual(result, c.expected) {
 			t.Errorf("TimSort(%v) == %v, expected %v", c.input, result, c.expected)
+		}
+	}
+}
+
+func BenchmarkBubbleSort(b *testing.B) {
+	for b.Loop() {
+		for _, c := range testCases {
+			inputCopy := make([]int, len(c.input))
+			copy(inputCopy, c.input)
+			sorting.BubbleSort(inputCopy)
 		}
 	}
 }
